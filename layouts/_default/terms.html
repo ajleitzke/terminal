@@ -3,10 +3,10 @@
   <h1 class="list-title"><span class="prompt">&gt;</span> {{ .Title }}</h1>
 
   <div class="terms-list">
-    {{- range .Pages }}
-    <a href="{{ .Permalink }}" class="term-item">
-      <span class="term-name"><span class="dollar">$</span> {{ .Title | lower }}</span>
-      <span class="term-count">({{ .Pages.Len }})</span>
+    {{- range .Data.Terms.ByCount }}
+    <a href="{{ .Page.Permalink }}" class="term-item">
+      <span class="term-name"><span class="dollar">$</span> {{ .Page.Title | lower }}</span>
+      <span class="term-count">({{ .Count }})</span>
     </a>
     {{- end }}
   </div>
