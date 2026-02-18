@@ -44,6 +44,14 @@
       {{- end }}
     </div>
     {{- end }}
+
+    {{- if and .Params.tags (not .Params.hidemeta) }}
+    <div class="post-tags">
+      {{- range .Params.tags }}
+      <a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
   </header>
 
   {{- if or .Site.Params.showtoc .Params.showtoc }}
@@ -59,15 +67,6 @@
 
   <footer class="post-footer">
     <div class="post-footer-row">
-      {{- if .Params.tags }}
-      <div class="post-footer-tags">
-        <span class="dollar">$</span> tags:
-        {{- range .Params.tags }}
-        <a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
-        {{- end }}
-      </div>
-      {{- end }}
-
       {{- if .Site.Params.ShowShareButtons }}
       <div class="share-buttons">
         <a href="https://x.com/intent/tweet?text={{ .Title | urlquery }}&url={{ .Permalink | urlquery }}" target="_blank" rel="noopener noreferrer" class="share-btn" title="Share on X">
