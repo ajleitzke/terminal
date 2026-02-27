@@ -100,6 +100,14 @@
     // Copy code buttons
     var highlights = document.querySelectorAll('.highlight');
     for (var i = 0; i < highlights.length; i++) {
+      var codeEl = highlights[i].querySelector('code');
+      if (codeEl && codeEl.className) {
+        var langMatch = codeEl.className.match(/language-([a-z0-9#+-]+)/i);
+        if (langMatch && langMatch[1]) {
+          highlights[i].setAttribute('data-lang', langMatch[1]);
+        }
+      }
+
       var btn = document.createElement('button');
       btn.className = 'copy-code';
       btn.textContent = 'copy';
