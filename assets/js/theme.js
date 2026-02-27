@@ -36,6 +36,19 @@
     }
   }
 
+  function observeGiscusTheme() {
+    if (!document.querySelector('script[src="https://giscus.app/client.js"]')) return;
+
+    var observer = new MutationObserver(function () {
+      var iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe) return;
+      updateGiscusTheme(document.documentElement.getAttribute('data-theme'));
+      observer.disconnect();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
   function toggleTheme() {
     var current = document.documentElement.getAttribute('data-theme');
     var next = current === 'dark' ? 'light' : 'dark';
@@ -68,8 +81,9 @@
     var mobileMenu = document.querySelector('.mobile-menu');
     if (menuBtn && mobileMenu) {
       menuBtn.addEventListener('click', function () {
-        menuBtn.classList.toggle('active');
+        var isExpanded = menuBtn.classList.toggle('active');
         mobileMenu.classList.toggle('active');
+        menuBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
       });
 
       // Close menu when a link is clicked
@@ -78,6 +92,7 @@
         menuLinks[i].addEventListener('click', function () {
           menuBtn.classList.remove('active');
           mobileMenu.classList.remove('active');
+          menuBtn.setAttribute('aria-expanded', 'false');
         });
       }
     }
@@ -103,6 +118,8 @@
         };
       })(highlights[i]));
     }
+
+    observeGiscusTheme();
   });
 
   // Listen for OS theme changes when in auto mode

@@ -38,7 +38,7 @@
         </div>
         <h3 class="post-title">{{ .Title }}</h3>
         {{- if not .Site.Params.hideSummary }}
-        <p class="post-summary">{{ .Plain | htmlUnescape | truncate 200 }}</p>
+        <p class="post-summary">{{ .Summary | plainify | htmlUnescape | truncate 200 }}</p>
         {{- end }}
       </a>
     </article>
