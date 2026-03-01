@@ -1234,8 +1234,8 @@ img {
    ============================================ */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 2rem 0;
-  margin-top: 2rem;
+  padding: 1rem 0 1.4rem;
+  margin-top: 1.5rem;
 }
 
 .footer-inner {
@@ -1248,15 +1248,31 @@ img {
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer-links a {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   transition: color var(--transition);
+}
+
+.footer-links a + a {
+  position: relative;
+  padding-left: 0.9rem;
+}
+
+.footer-links a + a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 0.8em;
+  background: var(--border);
+  transform: translateY(-50%);
 }
 
 .footer-links a:hover {
@@ -1264,8 +1280,10 @@ img {
 }
 
 .footer-copy {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
+  margin: 0;
+  line-height: 1.2;
 }
 
 .footer-copy a {
@@ -1343,6 +1361,10 @@ img {
 
   .error-code {
     font-size: 4rem;
+  }
+
+  .footer-links {
+    margin-bottom: 0.7rem;
   }
 }
 
